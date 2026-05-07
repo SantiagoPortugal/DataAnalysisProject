@@ -1,0 +1,10 @@
+# Generated binary deliverables are intentionally not versioned.
+# Run scripts/generate_structural_assets.py or execute the notebook with CICIDS2017 to recreate them locally.
+figures/*.png
+informe_cicids2017_aws_trafico_red.pdf
+
+# Local datasets can be large and should not be committed.
+data/
+*.zip
+*.parquet
+*.xlsx

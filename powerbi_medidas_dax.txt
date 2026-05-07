@@ -1,0 +1,64 @@
+Total Registros = COUNTROWS('cicids2017_clean')
+
+Total Malicioso =
+CALCULATE(
+    COUNTROWS('cicids2017_clean'),
+    'cicids2017_clean'[Traffic Type] = "Malicioso"
+)
+
+Total Benigno =
+CALCULATE(
+    COUNTROWS('cicids2017_clean'),
+    'cicids2017_clean'[Traffic Type] = "Benigno"
+)
+
+Porcentaje Malicioso =
+DIVIDE(
+    [Total Malicioso],
+    [Total Registros],
+    0
+)
+
+Promedio Flow Duration =
+AVERAGE('cicids2017_clean'[Flow Duration])
+
+Promedio Flow Bytes =
+AVERAGE('cicids2017_clean'[Flow Bytes/s])
+
+Promedio Flow Packets =
+AVERAGE('cicids2017_clean'[Flow Packets/s])
+
+Promedio Fwd Packets =
+AVERAGE('cicids2017_clean'[Total Fwd Packets])
+
+Promedio Bwd Packets =
+AVERAGE('cicids2017_clean'[Total Backward Packets])
+
+Max Flow Duration =
+MAX('cicids2017_clean'[Flow Duration])
+
+Max Flow Bytes =
+MAX('cicids2017_clean'[Flow Bytes/s])
+
+Max Flow Packets =
+MAX('cicids2017_clean'[Flow Packets/s])
+
+Columna calculada:
+Nivel Intensidad Trafico =
+SWITCH(
+    TRUE(),
+    'cicids2017_clean'[Flow Packets/s] < 100, "Baja",
+    'cicids2017_clean'[Flow Packets/s] < 1000, "Media",
+    'cicids2017_clean'[Flow Packets/s] < 10000, "Alta",
+    "Crítica"
+)
+
+Columna calculada:
+Nivel Duracion =
+SWITCH(
+    TRUE(),
+    'cicids2017_clean'[Flow Duration] < 1000000, "Corta",
+    'cicids2017_clean'[Flow Duration] < 10000000, "Media",
+    'cicids2017_clean'[Flow Duration] < 100000000, "Alta",
+    "Extrema"
+)
