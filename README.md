@@ -15,6 +15,28 @@ El dataset utilizado no pertenece a AWS ni corresponde a información interna de
 
 No se descarga automáticamente el dataset porque la versión de Kaggle puede requerir credenciales. Descargue el dataset manualmente y configure la ruta `DATA_PATH` en el notebook.
 
+
+## Carga recomendada de CICIDS2017 en Colab
+
+El notebook define explícitamente los ocho CSV diarios habituales de CICIDS2017 dentro de `CICIDS2017_DAILY_FILES`:
+
+- `Monday-WorkingHours.pcap_ISCX.csv`
+- `Tuesday-WorkingHours.pcap_ISCX.csv`
+- `Wednesday-workingHours.pcap_ISCX.csv`
+- `Thursday-WorkingHours-Morning-WebAttacks.pcap_ISCX.csv`
+- `Thursday-WorkingHours-Afternoon-Infilteration.pcap_ISCX.csv`
+- `Friday-WorkingHours-Morning.pcap_ISCX.csv`
+- `Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv`
+- `Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv`
+
+Si los archivos están en Google Drive, ubíquelos en `/content/drive/MyDrive/MachineLearningCVE/`, monte Drive y ejecute en el notebook:
+
+```python
+df = load_cicids2017_daily_csvs(CICIDS2017_DRIVE_DIR)
+```
+
+También se conserva la opción de cargar un CSV consolidado (`MachineLearningCVE.csv` o `cicids2017.csv`) mediante `read_cicids2017(SINGLE_CSV_PATH)`.
+
 ## Estructura del proyecto
 
 ```text
